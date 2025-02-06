@@ -1,3 +1,10 @@
+        // Menyembunyikan loading screen setelah halaman sepenuhnya dimuat
+        window.addEventListener('load', function() {
+          const spinner = document.getElementById('spinner');
+          spinner.style.display = 'none'; // Sembunyikan loading screen
+      });
+    
+    
     // Handle URL parameters for recipient name
     const urlParams = new URLSearchParams(window.location.search);
     const recipientName = urlParams.get('kepada');
