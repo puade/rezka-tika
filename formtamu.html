@@ -38,12 +38,12 @@
     <div style="background-color: #e1f2ff; padding:10px; border-radius:10px;">
         <h2 class="text-center">Nama Mempelai</h2>
         <div class="mb-3">
-            <label for="wanitaInput" class="form-label">Mempelai Wanita:</label>
-            <input type="text" class="form-control" id="wanitaInput" placeholder="Masukkan nama Panggilan Wanita" required>
+            <label for="priaInput" class="form-label">Nama Panggilan Pria:</label>
+            <input type="text" class="form-control" id="priaInput" placeholder="Masukkan nama panggilan pria" required>
         </div>
         <div class="mb-3">
-            <label for="priaInput" class="form-label">Mempelai Pria:</label>
-            <input type="text" class="form-control" id="priaInput" placeholder="Masukkan nama Panggilan Pria" required>
+            <label for="wanitaInput" class="form-label">Nama Panggilan Wanita:</label>
+            <input type="text" class="form-control" id="wanitaInput" placeholder="Masukkan nama panggilan wanita" required>
         </div>
         <div id="errorMessage" class="error"></div> <!-- Menampilkan pesan error -->
     </div>
@@ -53,7 +53,7 @@
     <h6 class="text-center"><i style="color:gray;">Tambahkan "Bersama Pasangan" jika ada. Contoh: Fulan Bersama Istri</i></h6>
     <form id="namaForm">
         <div class="mb-3 input-group">
-            <input type="text" class="form-control" id="namaInput" placeholder="Masukkan nama" required>
+            <input type="text" class="form-control" id="namaInput" placeholder="Masukkan nama tamu" required>
             <span class="input-group-text" id="clearInput" style="cursor: pointer;">
                 <i class="bi bi-x-lg"></i>
             </span>
@@ -75,16 +75,16 @@
     document.getElementById('namaForm').addEventListener('submit', function(event) {
         event.preventDefault();  // Menghindari halaman reload saat submit
 
-        // Ambil nama dari input
+        // Ambil nama dari input nama tamu
         var nama = document.getElementById('namaInput').value;
 
         // Ambil nama Fulan & Fulanah
-        var Fulan = document.getElementById('wanitaInput').value;
-        var Fulanah = document.getElementById('priaInput').value;
+        var Fulan = document.getElementById('priaInput').value;
+        var Fulanah = document.getElementById('wanitaInput').value;
 
         // Validasi untuk nama mempelai
         if (!Fulan || !Fulanah) {
-            document.getElementById('errorMessage').textContent = "Harap isi nama mempelai wanita dan pria.";
+            document.getElementById('errorMessage').textContent = "Harap isi nama mempelai pria dan wanita.";
             return;  // Tidak melanjutkan jika ada input yang kosong
         } else {
             document.getElementById('errorMessage').textContent = "";  // Hapus pesan error jika valid
