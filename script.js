@@ -1,10 +1,17 @@
- 
-    // Handle URL parameters for recipient name
-    const urlParams = new URLSearchParams(window.location.search);
-    const recipientName = urlParams.get('kepada');
-    if (recipientName) {
-      document.getElementById('recipient-name').textContent = recipientName.replace(/\+/g, ' ');
-    }
+
+  // Handle URL parameters for recipient name
+  const urlParams = new URLSearchParams(window.location.search);
+  const recipientName = urlParams.get('kepada');
+
+  // Jika parameter 'kepada' ada, tambahkan ke URL
+  if (recipientName) {
+    const newUrl = `https://puade.github.io/rezka-tika/?kepada=${recipientName}`;
+    // Update og:url dengan URL yang baru
+    document.querySelector('meta[property="og:url"]').setAttribute("content", newUrl);
+
+    // Menampilkan nama penerima pada halaman
+    document.getElementById('recipient-name').textContent = recipientName.replace(/\+/g, ' ');
+  }
   
     // Countdown function
     function countdown() {
