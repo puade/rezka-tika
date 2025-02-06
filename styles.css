@@ -39,6 +39,7 @@ body, html {
 .frame-cover {
   background-image: url('asset/gambar/bg.jpg');
   background-size: cover;
+  background-position: center;
   text-align: center;
   padding: 5% ; /* Menggunakan persen untuk padding */
   position: absolute; /* Agar frame-cover bisa bergerak di atas frame-1 */
