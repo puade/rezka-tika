@@ -39,11 +39,11 @@
         <h2 class="text-center">Nama Mempelai</h2>
         <div class="mb-3">
             <label for="priaInput" class="form-label">Nama Panggilan Pria:</label>
-            <input type="text" class="form-control" id="priaInput" placeholder="Masukkan nama panggilan pria" required>
+            <input type="text" class="form-control" id="priaInput" placeholder="Masukkan nama panggilan pria" required disabled>
         </div>
         <div class="mb-3">
             <label for="wanitaInput" class="form-label">Nama Panggilan Wanita:</label>
-            <input type="text" class="form-control" id="wanitaInput" placeholder="Masukkan nama panggilan wanita" required>
+            <input type="text" class="form-control" id="wanitaInput" placeholder="Masukkan nama panggilan wanita" required disabled>
         </div>
         <div id="errorMessage" class="error"></div> <!-- Menampilkan pesan error -->
     </div>
@@ -71,6 +71,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 <script>
+
+    // Mengisi form secara otomatis ketika halaman dimuat
+    window.onload = function() {
+        document.getElementById('priaInput').value = 'Rezka'; // Mengisi nama pria
+        document.getElementById('wanitaInput').value = 'Tika'; // Mengisi nama wanita
+    };
+    
     // Fungsi untuk menangani form submit
     document.getElementById('namaForm').addEventListener('submit', function(event) {
         event.preventDefault();  // Menghindari halaman reload saat submit
