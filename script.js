@@ -1,8 +1,26 @@
-        // Menyembunyikan loading screen setelah halaman sepenuhnya dimuat
-        window.addEventListener('load', function() {
-          const spinner = document.getElementById('spinner');
-          spinner.style.display = 'none'; // Sembunyikan loading screen
-      });
+document.addEventListener('DOMContentLoaded', () => {
+  const spinner = document.getElementById('spinner');
+  const frameCover = document.getElementById('frame-cover');
+
+  // Tampilkan spinner saat halaman dimuat
+  spinner.style.display = 'block';
+
+  // Sembunyikan spinner setelah gambar di frame-cover selesai dimuat
+  const gifBackground = document.querySelector('.gif-background');
+  gifBackground.onload = function() {
+      spinner.style.display = 'none';
+  };
+
+  // Jika gambar gagal dimuat, sembunyikan spinner
+  gifBackground.onerror = function() {
+      spinner.style.display = 'none';
+  };
+
+  // Sembunyikan spinner setelah beberapa detik (jika gambar tidak dimuat)
+  setTimeout(() => {
+      spinner.style.display = 'none';
+  }, 5000); // 5 detik
+});
     
     
     // Handle URL parameters for recipient name
