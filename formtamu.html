@@ -25,15 +25,16 @@
         .input-group-append {
             cursor: pointer;
         }
-        .alert {
-            display: none;
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Form untuk mengganti nama Ikha & Jery -->
+    <!-- Form untuk mengganti nama Fulan & Fulanah -->
     <div style="background-color: #e1f2ff; padding:10px; border-radius:10px;">
         <h2 class="text-center">Nama Mempelai</h2>
         <div class="mb-3">
@@ -44,17 +45,12 @@
             <label for="priaInput" class="form-label">Mempelai Pria:</label>
             <input type="text" class="form-control" id="priaInput" placeholder="Masukkan nama Panggilan Pria" required>
         </div>
+        <div id="errorMessage" class="error"></div> <!-- Menampilkan pesan error -->
     </div>
-    <hr></hr>
+    <hr>
 
     <h2 class="text-center">Nama Tamu Undangan</h2>
     <h6 class="text-center"><i style="color:gray;">Tambahkan "Bersama Pasangan" jika ada. Contoh: Fulan Bersama Istri</i></h6>
-    
-    <!-- Alert for empty "Mempelai" fields -->
-    <div id="alertMessage" class="alert alert-danger" role="alert">
-        Nama Mempelai Wanita dan Mempelai Pria harus diisi!
-    </div>
-
     <form id="namaForm">
         <div class="mb-3 input-group">
             <input type="text" class="form-control" id="namaInput" placeholder="Masukkan nama" required>
@@ -64,7 +60,7 @@
         </div>
         <button type="submit" class="btn btn-primary w-100">Kirim</button>
     </form>
-    <hr></hr>
+    <hr>
     <div id="output" class="output"></div>
     <br>
     <button id="copyButton" class="btn btn-secondary w-100" style="display: none; padding: 5px;">Copy</button>
@@ -80,21 +76,19 @@
         event.preventDefault();  // Menghindari halaman reload saat submit
 
         // Ambil nama dari input
-        var wanita = document.getElementById('wanitaInput').value;
-        var pria = document.getElementById('priaInput').value;
-
-        // Validasi apakah kedua kolom "Mempelai" sudah diisi
-        if (!wanita || !pria) {
-            // Jika tidak diisi, tampilkan pesan peringatan
-            document.getElementById('alertMessage').style.display = 'block';
-            return;  // Hentikan proses jika ada yang kosong
-        } else {
-            // Jika sudah diisi, sembunyikan pesan peringatan
-            document.getElementById('alertMessage').style.display = 'none';
-        }
-
-        // Ambil nama tamu undangan
         var nama = document.getElementById('namaInput').value;
+
+        // Ambil nama Fulan & Fulanah
+        var Fulan = document.getElementById('wanitaInput').value;
+        var Fulanah = document.getElementById('priaInput').value;
+
+        // Validasi untuk nama mempelai
+        if (!Fulan || !Fulanah) {
+            document.getElementById('errorMessage').textContent = "Harap isi nama mempelai wanita dan pria.";
+            return;  // Tidak melanjutkan jika ada input yang kosong
+        } else {
+            document.getElementById('errorMessage').textContent = "";  // Hapus pesan error jika valid
+        }
 
         // Memastikan setiap kata dimulai dengan huruf kapital dan mengganti spasi dengan '+'
         var formattedNama = nama
@@ -104,7 +98,7 @@
             })
             .join('+' );  // Gabungkan kembali dengan '+' sebagai pengganti spasi
 
-        // Membuat output dengan teks yang diinginkan dan mengganti "Ikha & Jery"
+        // Membuat output dengan teks yang diinginkan dan mengganti "Fulan & Fulanah"
         var output = `Bismillahirrahmanirrahim
 
 Dan segala sesuatu kami ciptakan berpasang-pasangan supaya kamu mengingat kebesaran Allah. (Q.S. Adz-Dzariyat:49)
@@ -114,7 +108,7 @@ Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i un
 
 Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi :
 
-https://rockychk.github.io/ikhajery/?kepada=${formattedNama}
+https://puade.github.io/rezka-tika/?kepada=${formattedNama}
 
 Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu. 
 
@@ -123,7 +117,7 @@ Terimakasih...
 Wassalamualaikum Warahmatullahi Wabarakatuh
 
 Hormat kami
-${wanita} & ${pria}`;
+${Fulan} & ${Fulanah}`;
 
         // Tampilkan hasil output
         document.getElementById('output').textContent = output;
